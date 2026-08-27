@@ -13,7 +13,7 @@ import {
   alertApi,
   reportApi,
 } from '../api/client.js';
-
+ 
 const ROUTES = {
   login: '/login',
   register: '/register',
@@ -31,17 +31,17 @@ const ROUTES = {
   deliveries: '/deliveries',
   reports: '/reports',
 };
-
+ 
 let navigateFn = null;
 export function setNavigate(fn) {
   navigateFn = fn;
 }
-
+ 
 export function toggleMobileMore(open) {
   const p = document.getElementById('mobileMorePanel');
   if (p) p.classList.toggle('open', !!open);
 }
-
+ 
 // goto() is attached to window so the onclick="goto('x')" attributes that
 // live inside the extracted HTML fragments keep working untouched.
 export function goto(page) {
@@ -50,7 +50,7 @@ export function goto(page) {
   const path = ROUTES[page] || '/dashboard';
   if (navigateFn) navigateFn(path);
 }
-
+ 
 export function installGlobalBindings() {
   window.goto = goto;
   window.toggleMobileMore = toggleMobileMore;
@@ -63,7 +63,7 @@ export function installGlobalBindings() {
   window.velSendQuick = velSendQuick;
   window.fetchLiveWeather = fetchLiveWeather;
 }
-
+ 
 /* ---------- Role tabs (login / register) ---------- */
 // Both the desktop and mobile fragments are present in the DOM at once
 // (CSS media queries just hide one of them), so a plain
@@ -76,7 +76,7 @@ function getVisiblePanel(role) {
   }
   return panels[0] || null;
 }
-
+ 
 function wireRoleTabs(root) {
   root.querySelectorAll('.role-tabs').forEach((group) => {
     const tabs = group.querySelectorAll('.role-tab');
@@ -93,7 +93,7 @@ function wireRoleTabs(root) {
     });
   });
 }
-
+ 
 function setLoginRole(root, role) {
   root.querySelectorAll('[data-group="login-role"], [data-group="login-role-m"]').forEach((group) => {
     const tabs = group.querySelectorAll('.role-tab');
@@ -104,7 +104,7 @@ function setLoginRole(root, role) {
     });
   });
 }
-
+ 
 function showSuccessBanner(role) {
   const roleLabel = role === 'driver' ? 'driver' : 'user';
   const html =
@@ -118,14 +118,14 @@ function showSuccessBanner(role) {
     }
   });
 }
-
+ 
 export function hideSuccessBanner() {
   ['banner-desktop', 'banner-mobile'].forEach((id) => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
 }
-
+ 
 function captureAccountDetails(role, profile) {
   try {
     localStorage.setItem('nerAccountProfile', JSON.stringify(profile));
@@ -134,7 +134,7 @@ function captureAccountDetails(role, profile) {
   }
   populateAccountProfile();
 }
-
+ 
 export function populateAccountProfile() {
   let data = null;
   try {
@@ -168,11 +168,11 @@ export function populateAccountProfile() {
     if (el) el.style.display = isDriver ? 'block' : 'none';
   });
 }
-
+ 
 async function handleRegisterSubmit(role) {
   const panel = getVisiblePanel(role);
   if (!panel) return;
-
+ 
   const inputs = panel.querySelectorAll('input');
   const value = (i) => (inputs[i] ? inputs[i].value.trim() : '');
   const username = value(0) || (role === 'driver' ? 'New Driver' : 'New User');
@@ -180,20 +180,20 @@ async function handleRegisterSubmit(role) {
   const aadhaar = role === 'driver' ? value(2) : value(1);
   const mobile = role === 'driver' ? value(3) : value(2);
   const location = role === 'driver' ? value(4) : value(3);
-
-  const passwordInput = panel.querySelector('input[type="password"]');
+ 
+  const passwordInput = panel.querySelector('input[type="password"], input.pw');
   const password = passwordInput ? passwordInput.value : '';
   if (!password || password.length < 6) {
     alert('Please choose a password with at least 6 characters.');
     return;
   }
-
+ 
   let photoFile = null;
   if (role === 'driver') {
     const fileInput = panel.querySelector('input[type="file"]');
     photoFile = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
   }
-
+ 
   const submitBtn = panel.querySelector('.btn-primary');
   if (submitBtn) submitBtn.disabled = true;
   try {
@@ -208,7 +208,7 @@ async function handleRegisterSubmit(role) {
     if (submitBtn) submitBtn.disabled = false;
   }
 }
-
+ 
 async function handleLoginSubmit(buttonOrRole) {
   let role;
   let panel;
@@ -220,17 +220,17 @@ async function handleLoginSubmit(buttonOrRole) {
     role = panel ? panel.dataset.rolePanel : 'user';
   }
   if (!panel) return;
-
+ 
   const inputs = panel.querySelectorAll('input');
   const username = inputs[0] ? inputs[0].value.trim() : '';
   const passwordInput = panel.querySelector('input[type="password"], input.pw');
   const password = passwordInput ? passwordInput.value : '';
-
+ 
   if (!username || !password) {
     alert('Please enter your username and password.');
     return;
   }
-
+ 
   const submitBtn = typeof buttonOrRole === 'string' ? panel.querySelector('.btn-primary') : buttonOrRole;
   if (submitBtn) submitBtn.disabled = true;
   try {
@@ -244,7 +244,7 @@ async function handleLoginSubmit(buttonOrRole) {
     if (submitBtn) submitBtn.disabled = false;
   }
 }
-
+ 
 /* ---------- OTP + password visibility ---------- */
 function wireOtpBoxes(root) {
   const boxes = root.querySelectorAll('.otp-box');
@@ -254,7 +254,7 @@ function wireOtpBoxes(root) {
     });
   });
 }
-
+ 
 function wireFieldEyes(root) {
   root.querySelectorAll('.field-eye').forEach((eye) => {
     eye.addEventListener('click', () => {
@@ -269,12 +269,12 @@ function wireFieldEyes(root) {
     });
   });
 }
-
+ 
 /* ---------- Incident photo + geotag ---------- */
 let incidentPhotoData = null;
 let incidentPhotoFile = null;
 let incidentGeo = null;
-
+ 
 function wireIncidentPhoto(inputId, previewId) {
   const input = document.getElementById(inputId);
   if (!input || input.dataset.wired) return;
@@ -312,7 +312,7 @@ function wireIncidentPhoto(inputId, previewId) {
     reader.readAsDataURL(file);
   });
 }
-
+ 
 function geotagIncident(device) {
   const update = (text, success, coords) => {
     incidentGeo = { text, coords: coords || incidentGeo?.coords || null };
@@ -343,7 +343,7 @@ function geotagIncident(device) {
     update('GPS not supported · Sector 4 location can be used for this prototype.', false);
   }
 }
-
+ 
 function detectLocation(inputId) {
   const input = document.getElementById(inputId);
   if (!input) return;
@@ -364,7 +364,7 @@ function detectLocation(inputId) {
     input.value = 'Sector 4, Field Unit';
   }
 }
-
+ 
 /* ---------- Weather ---------- */
 const weatherCodeMap = {
   0: ['Clear sky', '☀️'], 1: ['Mainly clear', '🌤️'], 2: ['Partly cloudy', '⛅'], 3: ['Overcast', '☁️'],
@@ -378,7 +378,7 @@ const weatherCodeMap = {
 function weatherLabel(code) {
   return (weatherCodeMap[code] || ['Conditions unavailable', '🌡️'])[0];
 }
-
+ 
 function renderWeather(suffix, data, locLabel) {
   const cur = data.current;
   const setText = (id, val) => {
@@ -418,7 +418,7 @@ function renderWeather(suffix, data, locLabel) {
     }
   }
 }
-
+ 
 export function fetchLiveWeather(suffix) {
   const setText = (id, val) => {
     const el = document.getElementById(id);
@@ -449,7 +449,7 @@ export function fetchLiveWeather(suffix) {
     useCoords('27.48', '95.35', 'Sector 4, Field Unit (approx.)');
   }
 }
-
+ 
 /* ---------- Velocity AI chatbot ---------- */
 function velAppendMsg(containerId, text, who) {
   const body = document.getElementById(containerId);
@@ -485,7 +485,7 @@ async function velBotReply(userText, containerId) {
   velHideTyping(containerId);
   velAppendMsg(containerId, reply, 'bot');
 }
-
+ 
 // Deterministic fallback used when the backend/Velocity AI endpoint is
 // unreachable (e.g. offline field use, or MongoDB/API not yet configured).
 function velScriptedReply(userText) {
@@ -524,7 +524,7 @@ function velSendQuick(text, containerId) {
   velShowTyping(containerId);
   setTimeout(() => velBotReply(text, containerId), 400);
 }
-
+ 
 /* ---------- Vehicle photo (driver registration) ---------- */
 let vehiclePhotoData = null;
 function wireVehiclePhoto(inputId) {
@@ -574,7 +574,7 @@ function publishVehicleProfile() {
     card.style.display = 'block';
   }
 }
-
+ 
 /* ---------- Incident report submission ---------- */
 function wireSeverityButtons(containerId) {
   const container = document.getElementById(containerId);
@@ -588,35 +588,35 @@ function wireSeverityButtons(containerId) {
     });
   });
 }
-
+ 
 function getSelectedSeverity(containerId) {
   const container = document.getElementById(containerId);
   const active = container && container.querySelector('.active[data-value]');
   return active ? active.dataset.value : 'Medium';
 }
-
+ 
 async function submitIncidentReport(suffix) {
   const typeEl = document.getElementById('incidentType' + suffix);
   const descEl = document.getElementById('incidentDesc' + suffix);
   const msgEl = document.getElementById('incidentSubmitMsg' + suffix);
   const submitBtn = document.getElementById('incidentSubmit' + suffix);
-
+ 
   const type = typeEl ? typeEl.value : '';
   if (!type) {
     alert('Please select an incident type.');
     return;
   }
-
+ 
   const severity = getSelectedSeverity('incidentSeverity' + suffix);
   const description = descEl ? descEl.value.trim() : '';
-
+ 
   const showMsg = (text, isError) => {
     if (!msgEl) return;
     msgEl.textContent = text;
     msgEl.style.color = isError ? '#DC2626' : '#16A34A';
     msgEl.style.display = 'block';
   };
-
+ 
   if (submitBtn) submitBtn.disabled = true;
   try {
     const fields = {
@@ -638,25 +638,25 @@ async function submitIncidentReport(suffix) {
     if (submitBtn) submitBtn.disabled = false;
   }
 }
-
+ 
 function wireIncidentSubmit(suffix) {
   const btn = document.getElementById('incidentSubmit' + suffix);
   if (!btn || btn.dataset.wired) return;
   btn.dataset.wired = '1';
   btn.addEventListener('click', () => submitIncidentReport(suffix));
 }
-
+ 
 /* ---------- Live data rendering (Dashboard / Roads / Vehicles / Deliveries / Alerts / Reports) ---------- */
 // Every function below is defensive: if the backend isn't reachable (no
 // token yet, MongoDB not configured, server not running...) it simply
 // leaves the original static mock markup in place instead of throwing.
-
+ 
 function escapeHtml(str) {
   return String(str ?? '').replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   }[c]));
 }
-
+ 
 function timeAgo(dateStr) {
   if (!dateStr) return '';
   const diffMs = Date.now() - new Date(dateStr).getTime();
@@ -667,10 +667,10 @@ function timeAgo(dateStr) {
   if (hrs < 24) return `${hrs}h ago`;
   return `${Math.floor(hrs / 24)}d ago`;
 }
-
+ 
 const ALERT_TAG_CLASS = { CRITICAL: 'critical', 'HIGH RISK': 'highrisk', UPDATE: '', LOGISTICS: '' };
 const ALERT_TAG_CHIP = { CRITICAL: 'critical', 'HIGH RISK': 'highrisk', UPDATE: 'update', LOGISTICS: 'logistics' };
-
+ 
 function renderAlertItemHtml(alert) {
   const itemClass = ALERT_TAG_CLASS[alert.tag] || '';
   const chipClass = ALERT_TAG_CHIP[alert.tag] || 'update';
@@ -682,12 +682,12 @@ function renderAlertItemHtml(alert) {
     `<div class="alert-desc">${escapeHtml(alert.description)}</div></div>`
   );
 }
-
+ 
 async function loadDashboardData(root) {
   const hasStats = root.querySelector('#statVehiclesDesktop, #statVehiclesMobile');
   const hasAlerts = root.querySelector('#dashboardAlertsListDesktop');
   if (!hasStats && !hasAlerts) return;
-
+ 
   try {
     const [{ vehicles }, { deliveries, stats }, { roads }, { incidents }, { alerts }] = await Promise.all([
       vehicleApi.list(),
@@ -696,10 +696,10 @@ async function loadDashboardData(root) {
       incidentApi.list('?status=Open&limit=200'),
       alertApi.list(6),
     ]);
-
+ 
     const activeVehicles = vehicles.filter((v) => v.status === 'Active').length;
     const blockedRoads = roads.filter((r) => r.status === 'Blocked').length;
-
+ 
     const setText = (id, val) => {
       const el = document.getElementById(id);
       if (el) el.textContent = val;
@@ -712,7 +712,7 @@ async function loadDashboardData(root) {
     setText('statAlertsMobile', alerts.length);
     setText('statIncidentsDesktop', incidents.length);
     setText('statIncidentsMobile', incidents.length);
-
+ 
     const listEl = document.getElementById('dashboardAlertsListDesktop');
     if (listEl && alerts.length) {
       listEl.innerHTML = alerts.map(renderAlertItemHtml).join('');
@@ -722,14 +722,14 @@ async function loadDashboardData(root) {
     console.warn('Dashboard live data unavailable:', err.message);
   }
 }
-
+ 
 const ROAD_STATUS_CLASS = { Accessible: 'accessible', Risky: 'risky', Blocked: 'blocked' };
-
+ 
 async function loadRoadsData(root) {
   const tbody = document.getElementById('roadsTableBody');
   const mobileList = document.getElementById('roadsListMobile');
   if (!tbody && !mobileList) return;
-
+ 
   try {
     const { roads, total } = await roadApi.list('?limit=50');
     if (tbody) {
@@ -766,16 +766,16 @@ async function loadRoadsData(root) {
     console.warn('Roads live data unavailable:', err.message);
   }
 }
-
+ 
 async function loadVehiclesData(root) {
   const grid = document.getElementById('vehicleGrid');
   const mobileList = document.getElementById('vehicleListMobile');
   if (!grid && !mobileList) return;
-
+ 
   try {
     const { vehicles } = await vehicleApi.list();
     if (!vehicles.length) return;
-
+ 
     if (grid) {
       grid.innerHTML = vehicles
         .map((v) => {
@@ -811,25 +811,25 @@ async function loadVehiclesData(root) {
     console.warn('Vehicles live data unavailable:', err.message);
   }
 }
-
+ 
 function fileUrlLocal(path) {
   const base = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   return path.startsWith('http') ? path : `${base}${path}`;
 }
-
+ 
 const DELIVERY_STATUS_CLASS = {
   'On Route': 'accessible', Scheduled: 'accessible', Delivered: 'accessible',
   Delayed: 'risky', Rerouting: 'blocked',
 };
-
+ 
 async function loadDeliveriesData(root) {
   const tbody = document.getElementById('deliveriesTableBody');
   const mobileList = document.getElementById('deliveriesListMobile');
   if (!tbody && !mobileList) return;
-
+ 
   try {
     const { deliveries, total, stats } = await deliveryApi.list('?limit=50');
-
+ 
     const setText = (id, val) => {
       const el = document.getElementById(id);
       if (el) el.textContent = val;
@@ -837,7 +837,7 @@ async function loadDeliveriesData(root) {
     setText('statActiveDeliveriesDesktop', stats.active);
     setText('statDeliveredTodayDesktop', stats.deliveredToday);
     setText('statScheduledDesktop', stats.scheduled);
-
+ 
     if (tbody) {
       tbody.innerHTML = deliveries
         .map((d) => {
@@ -872,7 +872,7 @@ async function loadDeliveriesData(root) {
     console.warn('Deliveries live data unavailable:', err.message);
   }
 }
-
+ 
 async function loadAlertsPageData(root) {
   const listEl = document.getElementById('alertsListDesktop');
   if (!listEl) return;
@@ -883,13 +883,13 @@ async function loadAlertsPageData(root) {
     console.warn('Alerts live data unavailable:', err.message);
   }
 }
-
+ 
 const REPORT_TAG_CHIP = { DAILY: 'logistics', FIELD: 'update', WEEKLY: 'logistics', MONTHLY: 'update' };
-
+ 
 async function loadReportsData(root) {
   const listEl = document.getElementById('reportsListDesktop');
   const genBtn = document.getElementById('generateReportBtn');
-
+ 
   if (genBtn && !genBtn.dataset.wired) {
     genBtn.dataset.wired = '1';
     genBtn.addEventListener('click', async () => {
@@ -904,7 +904,7 @@ async function loadReportsData(root) {
       }
     });
   }
-
+ 
   if (!listEl) return;
   try {
     const { reports } = await reportApi.list();
@@ -922,7 +922,7 @@ async function loadReportsData(root) {
     console.warn('Reports live data unavailable:', err.message);
   }
 }
-
+ 
 function loadLiveData(root) {
   loadDashboardData(root);
   loadRoadsData(root);
@@ -931,35 +931,36 @@ function loadLiveData(root) {
   loadAlertsPageData(root);
   loadReportsData(root);
 }
-
+ 
 /* ---------- Master init, called after every page render ---------- */
 export function initPageBehaviors(root) {
   if (!root) return;
   wireRoleTabs(root);
   wireOtpBoxes(root);
   wireFieldEyes(root);
-
+ 
   wireIncidentPhoto('incidentPhotoDesktop', 'incidentPhotoPreviewDesktop');
   wireIncidentPhoto('incidentGalleryDesktop', 'incidentPhotoPreviewDesktop');
   wireIncidentPhoto('incidentPhotoMobile', 'incidentPhotoPreviewMobile');
   wireIncidentPhoto('incidentGalleryMobile', 'incidentPhotoPreviewMobile');
-
+ 
   wireSeverityButtons('incidentSeverityDesktop');
   wireSeverityButtons('incidentSeverityMobile');
   wireIncidentSubmit('Desktop');
   wireIncidentSubmit('Mobile');
-
+ 
   wireVehiclePhoto('vehiclePhotoDesktop');
   wireVehiclePhoto('vehiclePhotoMobile');
-
+ 
   if (root.querySelector('#weatherLocDesktop') || root.querySelector('#weatherLocMobile')) {
     fetchLiveWeather('Desktop');
     fetchLiveWeather('Mobile');
   }
-
+ 
   if (root.querySelector('[data-page="profile"]') || document.getElementById('profileNameDesktop')) {
     populateAccountProfile();
   }
-
+ 
   loadLiveData(root);
 }
+ 
