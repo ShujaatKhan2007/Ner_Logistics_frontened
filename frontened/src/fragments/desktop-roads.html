@@ -1,0 +1,31 @@
+<div class="app-content">
+<div class="page-head">
+<div><div class="page-title">Road Accessibility Monitor</div><div class="page-sub">Real-time status of critical infrastructure routes.</div></div>
+<div class="page-actions">
+<button class="btn-outline"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>Export Data</button>
+<button class="btn-solid-sm"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg>Report Status</button>
+</div>
+</div>
+<div class="panel-card">
+<div class="filter-bar">
+<div class="search-input"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg><input placeholder="Search roads, routes..."/></div>
+<div class="select-fake">All Districts<svg fill="none" stroke="currentColor" stroke-width="2.4" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></div>
+<div class="select-fake">Status: All<svg fill="none" stroke="currentColor" stroke-width="2.4" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></div>
+<div class="filter-flag"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 5h16M7 12h10M10 19h4"></path></svg>Filters Active</div>
+</div>
+<table class="roads-table">
+<thead><tr><th>Road Name</th><th>District</th><th>Current Status</th><th>Risk Level</th><th>Last Updated</th></tr></thead>
+<tbody id="roadsTableBody">
+<tr><td class="road-name">Highway 42 (North)</td><td>North District</td><td><span class="status-pill accessible">Accessible</span></td><td>Low</td><td>10 mins ago</td></tr>
+<tr><td class="road-name">Route 6 - Mountain Pass</td><td>East District</td><td><span class="status-pill risky">Risky</span></td><td>Medium</td><td>22 mins ago</td></tr>
+<tr><td class="road-name">Coastal Road B</td><td>South District</td><td><span class="status-pill blocked">Blocked</span></td><td>High - Landslide</td><td>1 hr ago</td></tr>
+<tr><td class="road-name">Industrial Park Blvd</td><td>West District</td><td><span class="status-pill accessible">Accessible</span></td><td>Low</td><td>5 mins ago</td></tr>
+<tr><td class="road-name">Valley Connection 12</td><td>East District</td><td><span class="status-pill risky">Risky</span></td><td>Medium - Flooding Risk</td><td>45 mins ago</td></tr>
+</tbody>
+</table>
+<div class="table-foot">
+<div>Showing 1 to 5 of 124 routes</div>
+<div class="pagination"><div class="page-arrow"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewbox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg></div><div class="page-num active">1</div><div class="page-num">2</div><div class="page-num">3</div><div class="page-num">…</div><div class="page-arrow"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewbox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg></div></div>
+</div>
+</div>
+</div>

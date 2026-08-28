@@ -1,0 +1,35 @@
+<div class="app-content">
+<div class="page-head">
+<div><div class="page-title">Deliveries</div><div class="page-sub">Track assigned, in-progress, and completed deliveries.</div></div>
+<div class="page-actions">
+<button class="btn-outline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Export Data</button>
+<button class="btn-solid-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>New Delivery</button>
+</div>
+</div>
+<div class="stat-grid">
+<div class="stat-card"><div class="stat-top"><span class="stat-label">Active Deliveries</span><div class="stat-icon" style="background:var(--primary-light);color:var(--primary-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"/></svg></div></div><div class="stat-value" id="statActiveDeliveriesDesktop">892</div><div class="stat-note">On schedule: 94%</div></div>
+<div class="stat-card"><div class="stat-top"><span class="stat-label">Delivered Today</span><div class="stat-icon" style="background:var(--success-bg);color:var(--success);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div></div><div class="stat-value" id="statDeliveredTodayDesktop">347</div><div class="stat-note up">+8% vs yesterday</div></div>
+<div class="stat-card"><div class="stat-top"><span class="stat-label">Scheduled</span><div class="stat-icon" style="background:#FEF3C7;color:#92400E;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div></div><div class="stat-value" id="statScheduledDesktop">156</div><div class="stat-note">Next 24 hours</div></div>
+</div>
+<div class="panel-card">
+<div class="filter-bar">
+<div class="search-input"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input placeholder="Search deliveries, orders..."></div>
+<div class="select-fake">All Status<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+<div class="select-fake">All Districts<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></div>
+</div>
+<table class="roads-table">
+<thead><tr><th>Delivery ID</th><th>Route</th><th>Driver</th><th>Status</th><th>ETA</th></tr></thead>
+<tbody id="deliveriesTableBody">
+<tr><td class="road-name">#8472</td><td>Sector 4 → Main Terminal</td><td>Rajesh Kumar</td><td><span class="status-pill accessible">On Route</span></td><td>18 min</td></tr>
+<tr><td class="road-name">#8471</td><td>Hub A → Sector 7</td><td>Amit Singh</td><td><span class="status-pill accessible">On Route</span></td><td>34 min</td></tr>
+<tr><td class="road-name">#8465</td><td>Main Terminal → Hub B</td><td>Priya Das</td><td><span class="status-pill risky">Delayed</span></td><td>1h 10min</td></tr>
+<tr><td class="road-name">#8460</td><td>Hub B → Sector 2</td><td>Rajesh Kumar</td><td><span class="status-pill blocked">Rerouting</span></td><td>—</td></tr>
+<tr><td class="road-name">#8458</td><td>Sector 1 → Hub A</td><td>Amit Singh</td><td><span class="status-pill accessible">Delivered</span></td><td>Completed</td></tr>
+</tbody>
+</table>
+<div class="table-foot">
+<div>Showing 1 to 5 of 892 deliveries</div>
+<div class="pagination"><div class="page-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 6l-6 6 6 6"/></svg></div><div class="page-num active">1</div><div class="page-num">2</div><div class="page-num">3</div><div class="page-num">…</div><div class="page-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div></div>
+</div>
+</div>
+</div>

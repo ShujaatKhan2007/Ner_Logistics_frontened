@@ -1,0 +1,49 @@
+<div class="app-content">
+<div class="greet-row">
+<div>
+<div class="greet-title">Good morning, Director Shubham</div>
+<div class="greet-date"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg>Tuesday, August 25, 2026</div>
+</div>
+<div class="online-badge">SYSTEM ONLINE</div>
+</div>
+<div class="stat-grid">
+<div class="stat-card"><div class="stat-top"><span class="stat-label">Active Vehicles</span><div class="stat-icon" style="background:var(--primary-light);color:var(--primary-dark);"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="9" rx="1.5" width="13" x="1" y="7"></rect><path d="M14 10h4l3 3v3h-7z"></path><circle cx="6" cy="18" r="1.6"></circle><circle cx="17" cy="18" r="1.6"></circle></svg></div></div><div class="stat-value" id="statVehiclesDesktop">1,248</div><div class="stat-note up"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M4 15l6-6 4 4 6-8"></path></svg>+12% vs last week</div></div>
+<div class="stat-card"><div class="stat-top"><span class="stat-label">Active Deliveries</span><div class="stat-icon" style="background:var(--primary-light);color:var(--primary-dark);"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="4" rx="1" width="18" x="3" y="4"></rect><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"></path><path d="M10 12h4"></path></svg></div></div><div class="stat-value" id="statDeliveriesDesktop">892</div><div class="stat-note"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>On schedule: 94%</div></div>
+<div class="stat-card"><div class="stat-top"><span class="stat-label">Blocked Roads</span><div class="stat-icon" style="background:#FCE8E8;color:#DC2626;"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 20 9 4h6l5 16"></path><path d="M10.3 14h3.4"></path></svg></div></div><div class="stat-value" id="statRoadsDesktop">14</div><div class="stat-note warn"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 3 2 20h20L12 3z"></path><path d="M12 10v4"></path></svg>+3 new today</div></div>
+<div class="stat-card"><div class="stat-top"><span class="stat-label">Active Incidents</span><div class="stat-icon" style="background:#FEF3C7;color:#92400E;"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 3 2 20h20L12 3z"></path><path d="M12 10v4"></path><circle cx="12" cy="17" fill="currentColor" r=".6"></circle></svg></div></div><div class="stat-value" id="statIncidentsDesktop">27</div><div class="stat-note danger"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>8 critical</div></div>
+</div>
+<div class="two-panel">
+<div class="panel-card">
+<div class="panel-head"><h3>Live Operations Map</h3><div class="panel-head-tools"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 5h16M7 12h10M10 19h4"></path></svg><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"></path></svg></div></div>
+<div class="map-canvas">
+<div class="map-label" style="top:10px;left:10px;">Ry. Station</div>
+<div class="map-label" style="top:150px;left:70px;">Lungding</div>
+<div class="map-label" style="top:270px;left:120px;">Röbel <span style="color:#94A3B8;">Temporarily closed</span></div>
+<div class="map-label" style="top:250px;left:20px;">dar gaon</div>
+<div class="map-label" style="top:320px;left:65px;">Lungding Khelma</div>
+<div class="map-label" style="top:390px;left:15px;">Bilapur</div>
+<div class="map-tag" style="top:170px;left:220px;">Landslide</div>
+<div class="map-dot" style="top:190px;left:200px;"></div>
+<div class="map-dot" style="top:245px;left:280px;"></div>
+<div class="map-dot" style="top:305px;left:170px;"></div>
+<div class="map-tri" style="top:335px;left:270px;"></div>
+<svg preserveaspectratio="none" style="position:absolute;top:0;left:0;width:100%;height:100%;" viewbox="0 0 500 420"><path d="M205 195 C 215 240, 235 260, 245 290 C 255 320, 250 335, 255 345" fill="none" stroke="#F87171" stroke-dasharray="6 5" stroke-width="3"></path></svg>
+<div class="map-controls"><div class="map-ctrl-btn"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg></div><div class="map-ctrl-btn"><svg fill="none" stroke="currentColor" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14"></path></svg></div></div>
+<div class="map-legend">
+<div class="item"><span class="legend-dot" style="background:#2563EB;"></span>Active Vehicle</div>
+<div class="item"><span style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:8px solid #EF4444;"></span>Critical Incident</div>
+<div class="item"><span class="legend-line" style="background:#F87171;"></span>Blocked Route</div>
+</div>
+</div>
+</div>
+<div class="panel-card">
+<div class="panel-head"><h3>Recent Alerts</h3><span class="view-all" onclick="goto('alerts')" style="cursor:pointer;">View All</span></div>
+<div id="dashboardAlertsListDesktop">
+<div class="alert-item critical"><div class="alert-top"><span class="alert-tag critical">CRITICAL</span><span class="alert-time">10m ago</span></div><div class="alert-title">Road blocked: NH-44 Landslide</div><div class="alert-desc">Heavy rainfall has caused a severe landslide blocking both lanes near...</div></div>
+<div class="alert-item highrisk"><div class="alert-top"><span class="alert-tag highrisk">HIGH RISK</span><span class="alert-time">45m ago</span></div><div class="alert-title">Sector 4 Heavy Rain</div><div class="alert-desc">Visibility reduced to under 50m. All vehicles in Sector 4 advised to reduce...</div></div>
+<div class="alert-item"><div class="alert-top"><span class="alert-tag update">UPDATE</span><span class="alert-time">2h ago</span></div><div class="alert-title">Bridge Maintenance Complete</div><div class="alert-desc">Structural repairs on Teesta Bridge finished ahead of schedule. Route...</div></div>
+<div class="alert-item"><div class="alert-top"><span class="alert-tag logistics">LOGISTICS</span><span class="alert-time">3h ago</span></div><div class="alert-title">Convoy C-09 Arrived</div><div class="alert-desc">Medical supplies convoy C-09 has successfully reached Hub B without...</div></div>
+</div>
+</div>
+</div>
+</div>
